@@ -1,10 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpt3t27bygcjo"]
+[gd_scene load_steps=3 format=3 uid="uid://bpt3t27bygcjo"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_3htwd"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f1g6h"]
+resource_name = "Unit Principale"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_76lsa"]
+size = Vector3(5, 1, 5)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("SphereShape3D_3htwd")
+shape = SubResource("CapsuleShape3D_f1g6h")
+
+[node name="Area3D" type="Area3D" parent="."]
+disable_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_76lsa")
