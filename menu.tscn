@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://06kqyy868fwj"]
+
+[ext_resource type="Script" path="res://MenuButton.gd" id="1_kb5n0"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="MenuButton" type="MenuButton" parent="."]
+offset_left = 467.0
+offset_top = 54.0
+offset_right = 695.0
+offset_bottom = 212.0
+action_mode = 1
+text = "Jouer"
+language = "fr_CA"
+script = ExtResource("1_kb5n0")

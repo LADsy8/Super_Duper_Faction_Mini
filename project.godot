@@ -1,0 +1,8 @@
+config_version=5
+
+[application]
+
+config/name="Super Duper Factions mini"
+run/main_scene="res://menu.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
+config/icon="res://icon.svg"
