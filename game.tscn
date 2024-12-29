@@ -1,21 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpt3t27bygcjo"]
+[gd_scene load_steps=7 format=3 uid="uid://bpt3t27bygcjo"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f1g6h"]
-resource_name = "Unit Principale"
+[ext_resource type="PackedScene" uid="uid://bfcskv06l5knu" path="res://Scene_Personnage/Wizard_Gars.tscn" id="1_up4ju"]
+[ext_resource type="PackedScene" uid="uid://bnlsj3gw5bmq6" path="res://Scene_Outils/isometric_camera.tscn" id="2_66frt"]
+[ext_resource type="Script" path="res://Scene_Personnage/Wizard_Gars.gd" id="2_ho1tn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_76lsa"]
-size = Vector3(5, 1, 5)
+size = Vector3(15.0192, 1, 11.5905)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vnieo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36omo"]
+albedo_color = Color(0.392157, 1, 1, 1)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_f1g6h")
+[node name="Wizard" parent="." instance=ExtResource("1_up4ju")]
+script = ExtResource("2_ho1tn")
 
 [node name="Area3D" type="Area3D" parent="."]
 disable_mode = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_76lsa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/CollisionShape3D"]
+transform = Transform3D(14.8884, 0, 0, 0, 1.02773, 0, 0, 0, 12.2744, -0.0510535, 0, -0.325403)
+mesh = SubResource("BoxMesh_vnieo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_36omo")
+
+[node name="Isometric_Camera" parent="." instance=ExtResource("2_66frt")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0.31978, 5.91866, 6.45266)
+
+[connection signal="input_event" from="Wizard" to="Wizard" method="_on_input_event"]
